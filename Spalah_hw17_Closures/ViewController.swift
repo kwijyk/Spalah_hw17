@@ -10,16 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var changeColorAction: ((UIColor) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        changeColorAction = { [weakSelf = self] color in
+            weakSelf.view.backgroundColor = color
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - IBActions
+    @IBAction func changeColorAction(_ sender: UIButton) {
+        
+        guard let optChangeColorAction = changeColorAction,
+            let color = sender.backgroundColor else { return }
+        
+        optChangeColorAction(color)
     }
-
-
 }
 
