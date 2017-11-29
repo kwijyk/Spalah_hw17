@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        changeColorAction = { [weakSelf = self] color in
+        changeColorAction = { [unowned weakSelf = self] color in
             weakSelf.view.backgroundColor = color
         }
     }
